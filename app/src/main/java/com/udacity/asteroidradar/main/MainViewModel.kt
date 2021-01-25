@@ -1,6 +1,7 @@
 package com.udacity.asteroidradar.main
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.udacity.asteroidradar.database.AstronomyDatabase
 import com.udacity.asteroidradar.database.asDomainAstObj
@@ -10,6 +11,7 @@ import com.udacity.asteroidradar.network.getFormattedDateInCurrentWeek
 import com.udacity.asteroidradar.repository.APODRepo
 import com.udacity.asteroidradar.repository.AstRepo
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import java.lang.IllegalArgumentException
 
 //class to handle filter
@@ -35,8 +37,13 @@ class MainViewModel(app:Application) : ViewModel() {
     //init block to repository methods initialization
     init {
         viewModelScope.launch {
-            apodRepo.insertApodToDatabase()
-            astRepo.insertAstToDataBase()
+            try {
+                apodRepo.insertApodToDatabase()
+                astRepo.insertAstToDataBase()
+            }catch (e:Exception ){
+                Log.i("ConnectException","Message: $e")
+            }
+
             //init asteroid filtered list with standard value
             filteredList(AsteroidFilter.ALL)
         }

@@ -21,6 +21,8 @@ val retrofit: Retrofit = Retrofit.Builder()
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
 
+
+
 //API access methods
 interface ApiService {
     @GET("neo/rest/v1/feed")
@@ -28,9 +30,9 @@ interface ApiService {
         @Query("api_key")
             apiKey:String = Constants.API_KEY,
         @Query("start_date")
-            startDate:String = getFormattedDate(),
+            startDate:String,
         @Query("end_date")
-            endDate:String = getFormattedDate(Constants.DEFAULT_END_DATE_DAYS)
+            endDate:String
     ): Deferred<String>
 
     @GET("planetary/apod")

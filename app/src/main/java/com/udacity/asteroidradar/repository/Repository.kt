@@ -1,16 +1,21 @@
 package com.udacity.asteroidradar.repository
 
+import android.net.ConnectivityManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.udacity.asteroidradar.database.*
 import com.udacity.asteroidradar.domain.Asteroid
 import com.udacity.asteroidradar.domain.DomainAPOD
 import com.udacity.asteroidradar.network.*
+import com.udacity.asteroidradar.utils.Constants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kotlin.reflect.jvm.internal.impl.load.java.Constant
+
 
 //astronomy pic of day repository
 class APODRepo(private val astronomyDatabase:AstronomyDatabase) {
+
 
     //add network data to database
     suspend fun insertApodToDatabase(){
@@ -28,6 +33,8 @@ class APODRepo(private val astronomyDatabase:AstronomyDatabase) {
     val domainApod:LiveData<DomainAPOD> = Transformations.map(astronomyDatabase.astronomyDao.getApod()){
        it?.asDomainObj()
     }
+
+
 }
 
 //asteroid repository
@@ -35,7 +42,9 @@ class AstRepo(private val astronomyDatabase:AstronomyDatabase){
     //insert asteroids to dataBase
     suspend fun insertAstToDataBase(){
         withContext(Dispatchers.IO){
-            val apiResponse = ApiObj.retrofitService.getAsteroidAsync().await()
+            val statDate = getFormattedDate()
+            val endDate = getFormattedDate(Constants.DEFAULT_END_DATE_DAYS)
+            val apiResponse = ApiObj.retrofitService.getAsteroidAsync(endDate = endDate,startDate = statDate).await()
             astronomyDatabase.astronomyDao.insertAst(*apiResponse.asDatabaseAstObj())
         }
     }
