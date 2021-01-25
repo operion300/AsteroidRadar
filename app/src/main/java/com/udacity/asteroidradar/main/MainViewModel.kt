@@ -37,9 +37,9 @@ class MainViewModel(app:Application) : ViewModel() {
         viewModelScope.launch {
             apodRepo.insertApodToDatabase()
             astRepo.insertAstToDataBase()
+            //init asteroid filtered list with standard value
+            filteredList(AsteroidFilter.ALL)
         }
-        //init asteroid filtered list with standard value
-        filteredList(AsteroidFilter.ALL)
     }
 
     //apod liveData from repository to binding

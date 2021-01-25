@@ -4,6 +4,7 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.net.toUri
+import androidx.core.widget.ContentLoadingProgressBar
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Callback
@@ -49,7 +50,7 @@ fun AppCompatImageView.bindAPOD(url:String?){
                 .error(R.drawable.ic_connection_error)
                 .into(this, object :Callback{
                     override fun onSuccess() {
-                       //
+                       this@bindAPOD.findViewById<ContentLoadingProgressBar>(R.id.pgBar)?.visibility = View.GONE
                     }
 
                     override fun onError(e: Exception?) {
