@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import retrofit2.http.DELETE
 
-enum class AsteroidFilter (val filterValue:String){ALL("allList"),DAY("listOfDay"),WEEK("listOfWeek")}
 
 //dao with database access methods
 @Dao

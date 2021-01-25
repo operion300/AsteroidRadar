@@ -2,8 +2,6 @@ package com.udacity.asteroidradar.main
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.udacity.asteroidradar.database.AsteroidEntity
-import com.udacity.asteroidradar.database.AsteroidFilter
 import com.udacity.asteroidradar.database.AstronomyDatabase
 import com.udacity.asteroidradar.database.asDomainAstObj
 import com.udacity.asteroidradar.domain.Asteroid
@@ -13,6 +11,9 @@ import com.udacity.asteroidradar.repository.APODRepo
 import com.udacity.asteroidradar.repository.AstRepo
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
+
+//class to handle filter
+enum class AsteroidFilter (val filterValue:String){ALL("allList"),DAY("listOfDay"),WEEK("listOfWeek")}
 
 class MainViewModel(app:Application) : ViewModel() {
 

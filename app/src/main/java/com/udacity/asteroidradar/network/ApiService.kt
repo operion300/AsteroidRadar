@@ -37,7 +37,6 @@ interface ApiService {
     fun getPicOfDayAsync(
         @Query("api_key")
             apiKey:String = Constants.API_KEY,
-
         ): Deferred<PictureOfDay>
 }
 
