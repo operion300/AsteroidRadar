@@ -9,8 +9,6 @@ import com.udacity.asteroidradar.network.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-//enum class (val filterValue:String){}
-
 //astronomy pic of day repository
 class APODRepo(private val astronomyDatabase:AstronomyDatabase) {
 
@@ -46,5 +44,4 @@ class AstRepo(private val astronomyDatabase:AstronomyDatabase){
     fun removeOldAsteroid(){
         astronomyDatabase.astronomyDao.removeAsteroid(getFormattedDate())
     }
-
 }
