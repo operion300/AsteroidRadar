@@ -1,14 +1,12 @@
 package com.udacity.asteroidradar.network
 
-import com.udacity.asteroidradar.utils.Constants
 import com.udacity.asteroidradar.database.AsteroidEntity
 import com.udacity.asteroidradar.domain.Asteroid
+import com.udacity.asteroidradar.utils.Constants
 import org.json.JSONObject
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.temporal.TemporalAdjusters
-import java.util.stream.Collectors
-import kotlin.collections.ArrayList
 
 //method that returns a object list from Jason
 fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<Asteroid> {

@@ -40,7 +40,7 @@ interface ApiService {
     fun getPicOfDayAsync(
         @Query("api_key")
             apiKey:String = BuildConfig.ApiKey,
-        ): Deferred<PictureOfDay>
+    ): Deferred<PictureOfDay>
 }
 
 //object to access methods outside
